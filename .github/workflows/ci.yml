@@ -38,4 +38,4 @@ jobs:
             - name: Run tests
               run: |
                   pytest
-po
+                    echo "All tests passed!"
