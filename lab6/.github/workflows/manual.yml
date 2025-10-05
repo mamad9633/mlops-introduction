@@ -1,0 +1,27 @@
+name: Hello Dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Your name"
+        required: true
+        default: "Student"
+      run_extra_step:
+        description: "Run the extra step? (true|false)"
+        required: false
+        default: "false"
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print inputs
+        run: |
+          echo "Hello, ${{ github.event.inputs.name }}!"
+          echo "Extra step: ${{ github.event.inputs.run_extra_step }}"
+
+      - name: Optional extra step
+        if: ${{ github.event.inputs.run_extra_step == 'true' }}
+        run: |
+          echo "Running the extra step because you asked for it."
